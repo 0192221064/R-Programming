@@ -1,0 +1,29 @@
+
+library(dplyr)
+library(reshape2)
+data("ChickWeight")
+ordered_data <- ChickWeight %>%
+  arrange(Diet, weight)
+last_6_records <- tail(ordered_data, 6)
+print("Last 6 records from the ordered data frame:")
+print(last_6_records)
+melted_data <- melt(ChickWeight, id.vars = c("Chick", "Time", "Diet"), measure.vars = "weight")
+print("Melted data:")
+print(head(melted_data))
+
+mean_weight_by_diet <- dcast(melted_data, Diet ~ variable, mean)
+colnames(mean_weight_by_diet) <- c("Diet", "mean_weight")
+print("Mean weight by Diet:")
+print(mean_weight_by_diet)
+calculate_mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+mode_weight_by_diet <- melted_data %>%
+  group_by(Diet, variable) %>%
+  summarise(mode_weight = calculate_mode(value))
+mode_weight_by_diet <- mode_weight_by_diet %>%
+  select(Diet, mode_weight)
+print("Mode of weight by Diet:")
+print(mode_weight_by_diet)
