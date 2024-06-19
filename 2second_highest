@@ -1,0 +1,11 @@
+vector<-c(90,50,80,70,60,20,30,80,90,20)
+mean<-mean(vector)
+print(mean)
+median<-median(vector)
+print(median)
+mode<-as.numeric(names(sort(table(vector),decreasing = TRUE)[1]))
+print(mode)
+second_highest<-sort(unique(vector),decreasing = TRUE)[2]
+print(second_highest)
+third_lowest<-sort(unique(vector))[3]
+print(third_lowest)
