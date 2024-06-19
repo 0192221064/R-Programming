@@ -1,0 +1,4 @@
+data(women)
+head(women)
+women$height_factor <- as.factor(women$height)
+head(women)
