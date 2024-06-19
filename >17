@@ -1,0 +1,16 @@
+temperature<-airquality$Temp
+mean<-sum(temperature)/length((temperature))
+print(mean)
+
+first_five_rows<-head(airquality,n=5)
+print(first_five_rows)
+
+extract_col<-airquality[,!names(airquality) %in% c("Temp","Wind")]
+print(extract_col)
+
+coldest_day<-which.min(airquality$Temp)
+print(coldest_day)
+
+nos_days<-sum(airquality$Wind >17)
+print(nos_days)
+
