@@ -1,0 +1,35 @@
+
+data("Titanic")
+titanic_df <- as.data.frame(Titanic)
+titanic_df$Survived <- as.factor(titanic_df$Survived)
+titanic_df$Class <- as.factor(titanic_df$Class)
+titanic_df$Sex <- as.factor(titanic_df$Sex)
+titanic_df$Age <- as.factor(titanic_df$Age)
+survived_counts <- xtabs(Freq ~ Class + Survived, data = titanic_df)
+barplot(survived_counts, beside = TRUE, col = c("red", "green"),
+        legend = TRUE,
+        main = "Survival Counts by Passenger Class",
+        xlab = "Passenger Class", ylab = "Count",
+        args.legend = list(title = "Survived", x = "topright")
+survived_gender_counts <- xtabs(Freq ~ Class + Survived + Sex, data = titanic_df)
+par(mfrow = c(1, 2)) 
+barplot(survived_gender_counts[,, "Male"], beside = TRUE, col = c("red", "green"),
+        legend = TRUE,
+        main = "Survival Counts by Class (Male)",
+        xlab = "Passenger Class", ylab = "Count",
+        args.legend = list(title = "Survived", x = "topright"))
+
+barplot(survived_gender_counts[,, "Female"], beside = TRUE, col = c("red", "green"),
+        legend = TRUE,
+        main = "Survival Counts by Class (Female)",
+        xlab = "Passenger Class", ylab = "Count",
+        args.legend = list(title = "Survived", x = "topright"))
+
+par(mfrow = c(1, 1)) 
+age_counts <- xtabs(Freq ~ Age, data = titanic_df)
+age_values <- rep(c("Child", "Adult"), age_counts)
+hist(as.numeric(factor(age_values)), breaks = 30, col = "blue", border = "black",
+     main = "Age Distribution of Titanic Passengers",
+     xlab = "Age Group", ylab = "Frequency", freq = TRUE,
+     xaxt = "n")
+axis(1, at = 1:2, labels = levels(factor(age_values)))
