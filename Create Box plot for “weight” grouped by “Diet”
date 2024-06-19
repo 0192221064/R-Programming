@@ -1,0 +1,5 @@
+boxplot(weight~Diet,data=ChickWeight,main="weight grouped by Diet",
+xlab="chickweight",ylab="Diet")
+hist(ChickWeight$weight[ChickWeight$Diet==1],main="weight features belong to Diet- 1",
+xlab="chickweight",ylab="Diet 1",col="red")
+
