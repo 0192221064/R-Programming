@@ -1,0 +1,14 @@
+na.count<-colSums(is.na(airquality))
+print(na.count)
+airquality[is.na(airquality)]<-1
+after<-colSums(is.na(airquality))
+print(after)
+model<-lm(Ozone~Solar.R,data)
+summary(model)
+
+plot(airquality$Ozone,airquality$Solar.R,
+     xlab = "Solar Radiation", 
+     ylab = "Ozone Concentration", 
+     main = "Scatter Plot with Regression Line")
+abline(model, col = "red")
+
