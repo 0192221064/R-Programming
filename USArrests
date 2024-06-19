@@ -1,0 +1,20 @@
+data('USArrests')
+head(USArrests)
+summary(USArrests)
+max<-rownames(USArrests)[which.max(USArrests$Rape)]
+print(max)
+maximum<-rownames(USArrests)[which.max(USArrests$Murder)]
+print(maximum)
+minimum<-rownames(USArrests)[which.min(USArrests$Murder)]
+print(minimum)
+correlation<-cor(USArrests)
+print(correlation)
+median_assault<-median(USArrests$Assault)
+ass<-rownames(USArrests)[USArrests$Assault>median_assault]
+print(ass)
+state<-quantile(USArrests$Murder,probs=0.25)
+bottom<-rownames(USArrests)[USArrests$Murder<state]
+print(bottom)
+hist(USArrests$Murder,main="histogram of murder arrests",xlab="murder",col="blue")
+plot(USArrests$Murder,USArrests$UrbanPop,main="relation",xlab="muder",ylab="urbanrop",col=c("blue","red"))
+barplot(USArrests$Murder,names.arg=rownames(USArrests),main="muder rate for each state",xlab="muder rate",col="red")
