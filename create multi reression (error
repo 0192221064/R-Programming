@@ -1,0 +1,13 @@
+data<-ChickWeight
+head(data)
+
+model <- lm(weight ~ Time + Diet, data = data)
+summary(model)
+
+new_data <- data.frame(Time = 10, Diet = as.factor(1))
+predicted_weight <- predict(model, newdata = new_data)
+print(paste("predicted weight:",predicted_weight))
+
+actual_weight <- 25 
+error <- actual_weight - predicted_weight
+print(paste("Error:", error))
