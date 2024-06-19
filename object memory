@@ -1,0 +1,7 @@
+objects <- ls()
+for (obj in objects) {
+  cat("Object Name:", obj, "\n")
+  cat("Object Details:\n")
+  print(str(get(obj)))
+  cat("\n")
+}
